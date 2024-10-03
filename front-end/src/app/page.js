@@ -7,7 +7,7 @@ const mockItem={
 }
 export default function Home() {
   return (
-    <div className="w-full flex flex-wrap">
+    <div className="w-full flex flex-wrap p-8">
       <ItemCard item={mockItem}/>
         </div>
     );

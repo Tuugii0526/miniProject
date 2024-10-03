@@ -16,6 +16,7 @@ export const Nav=()=>{
     <p class="py-4">Press ESC key or click the button below to close</p>
     <div class="modal-action">
       <form method="dialog" >
+        
         <button class='btn bg-green-400 '>Add product</button>
       </form>
     </div>
