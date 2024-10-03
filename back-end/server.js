@@ -12,12 +12,72 @@ app.get("/",(req,res)=>{
         }
     )
 })
-app.post("/add",(req,res)=>{
-    res.json(
+app.get("/product/get",async (req,res)=>{
+    console.log('req in get:',req)
+    fs.readFile("./lib/data.json","utf-8",(readError,data)=>{
+        if(readError)
+            {
+                res.json(
+                    {
+                        "success":false
+                    }
+                )
+            }
+            let savedData=data ? JSON.parse(data) : [];
+        res.json(
+            {
+                "products":savedData
+            }
+        )
+    })
+
+})
+app.post("/product/add",(req,res)=>{
+    console.log('request is',req)
+    if(!req.body)
+    {
+        res.json(
+            {
+                "succuss":false
+            }
+        )
+    }
+    fs.readFile("./lib/data.json","utf-8",(readError,data)=>{
+        if(readError)
         {
-            greeting:'Iam post'
+            res.json(
+                {
+                    "success":false
+                }
+            )
         }
-    )
+        const {name,category,price}=req.body
+        let savedData=data ? JSON.parse(data) : []
+        const newProduct=
+        {
+            id:Date.now().toString(),
+            name:name,
+            category:category,
+            price:price
+        }
+        savedData.push(newProduct)
+        fs.writeFile("./lib/data.json",JSON.stringify(savedData),(error)=>{
+            if(error)
+            {
+                res.json(
+                    {
+                        "success":false
+                    }
+                )
+            }
+            else
+            {
+                res.json({
+                    success:true
+                  })
+            }
+        })
+    })
 })
 app.delete("/delete",(req,res)=>{
     res.json(
