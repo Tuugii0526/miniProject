@@ -14,7 +14,6 @@ export default function RootLayout({ children }) {
       >
         <div className="w-full h-screen bg-slate-200">
         <div className="w-full h-screen min-w-[240px] max-w-[1240px] m-auto bg-white">
-           <Nav/>
           {children}
         </div>
         </div>
