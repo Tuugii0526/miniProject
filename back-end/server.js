@@ -13,7 +13,6 @@ app.get("/",(req,res)=>{
     )
 })
 app.get("/product/get",async (req,res)=>{
-    console.log('req in get:',req)
     fs.readFile("./lib/data.json","utf-8",(readError,data)=>{
         if(readError)
             {
@@ -33,7 +32,6 @@ app.get("/product/get",async (req,res)=>{
 
 })
 app.post("/product/add",(req,res)=>{
-    console.log('request is',req)
     if(!req.body)
     {
         res.json(
